@@ -1913,7 +1913,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #f8f;
+  background: #ffff90;
 }
 .feed-link,
 .chat {
@@ -3157,13 +3157,10 @@ ul.breadcrumb li+li:last-child {
   }
 }
 * {
-  cursor: url("https://imgchr.com/i/ZXK2a4"), auto !important;
+  cursor: url("/images/正常选择.ani"), default !important;
 }
 :active {
-  cursor: url("/source/images/盾.ico"), auto !important;
-}
-.site-meta {
-  background: #f03;
+  cursor: url("/images/候选.ani"), default !important;
 }
 code {
   color: #ff7600;
