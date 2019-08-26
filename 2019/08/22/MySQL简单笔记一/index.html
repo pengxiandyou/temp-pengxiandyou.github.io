@@ -527,7 +527,7 @@
 <li>date：日期类型，格式为：yyyy-MM-dd；</li>
 <li>time：时间类型，格式为：hh:mm:ss</li>
 <li>timestamp：时间戳类型；yyyy-MM-dd hh:mm:ss</li>
-<li>datetime：日期时间yyyy-MM-dd hh:mm:ss   *<em>timestamp和datetime的范围不同 *</em></li>
+<li>datetime：日期时间yyyy-MM-dd hh:mm:ss   <strong>timestamp和datetime的范围不同 </strong></li>
 </ul>
 <p>有复合主键 一般不用 底层 索引 底层 二叉树</p>
 </li>
@@ -538,8 +538,8 @@
 <h1 id="范式："><a href="#范式：" class="headerlink" title="范式："></a>范式：</h1><p>设计数据库的一个标准，范式的等级越高，冗余越低，一般的项目到瑟三阶范三（传统项目）</p>
 <p>互联网项目：大数据，冗余大，基本都是单表<br>将一个表的数据拆成多个表：降低冗余，降低查询效率</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-  一阶范式：表中不能套表所有的数据库系统，都不会违反一阶范式</span><br><span class="line">-  二阶范式：满足一阶范式，非主键列必须依赖于主键。一个表中必须要主键  函数依赖：y=f（x）x--&gt;y 删除异常 更新异常 插入异常</span><br><span class="line">-  三阶范式：满足二阶范式，不存在传递依赖 x--&gt;y y--&gt;z x--&gt;z</span><br></pre></td></tr></table></figure>
+<font color="red" size="10">语句:</font>
 
-<p><font color="red" size="10">语句:</font></p>
 <ol>
 <li>数据库<ul>
 <li>创建 create database 库名;</li>
@@ -746,7 +746,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -767,7 +767,11 @@
         
           
         
-        <span class="site-state-item-count">2</span>
+          
+        
+          
+        
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -792,7 +796,9 @@
         
           
         
-        <span class="site-state-item-count">4</span>
+          
+        
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -923,7 +929,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">10k</span>
+    <span title="站点总字数">11k</span>
   
 
   
@@ -932,7 +938,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">9 分钟</span>
+    <span title="站点阅读时长">10 分钟</span>
   
 </div>
 
@@ -1145,6 +1151,13 @@ setInterval("createtime()",250);
   
 
   
+  
+
+  
+  
+
+  
+
 
   
 

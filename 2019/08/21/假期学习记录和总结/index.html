@@ -108,12 +108,10 @@
 <meta property="og:site_name" content="魔装少男的博客">
 <meta property="og:description" content="2019年7月8月学习记录">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://i.loli.net/2019/08/21/eFmJnQzKLHZfh8N.png">
 <meta property="og:updated_time" content="2019-08-23T03:30:14.750Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="假期学习记录和总结">
 <meta name="twitter:description" content="2019年7月8月学习记录">
-<meta name="twitter:image" content="https://i.loli.net/2019/08/21/eFmJnQzKLHZfh8N.png">
 
 
 
@@ -471,7 +469,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">2.2k</span>
+              <span title="本文字数">2.5k</span>
             </span>
           
 
@@ -509,47 +507,61 @@
 <hr>
 
 
-<h1 id="一"><a href="#一" class="headerlink" title="一"></a>一</h1><p>​    &emsp;&emsp;考试结束后,闲的无聊,不想打游戏,于是开始写代码.写了个剪刀石头布的小游戏.虽然没做到我想要的结果,但还不错.</p>
-<p>​    &emsp;&emsp;在这个小游戏制作过程中,我复习了上次Java实践的一些知识点,不知道东西就百度和问群友.这就是所谓的<font color="pink">面向百度编程</font>.有空我会上传到我的<a href="https://github.com/pengxiandyou" target="_blank" rel="noopener">Github</a>或者<a href="https://gitee.com/pengxiandyou" target="_blank" rel="noopener">码云</a>上</p>
-<p>​    &emsp;&emsp;在这之前我还为我的红警写了一个简单的文件删除工具.</p>
-<p>​    知识点</p>
-<ol>
-<li><p>重写<code>JPanel</code>使之可以带背景图片,再次改写使之可以为后面切换背景做铺垫</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span>  </span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">paintComponent</span><span class="params">(Graphics g)</span> </span>&#123;  </span><br><span class="line">	 ImageIcon icon = <span class="keyword">new</span> ImageIcon(<span class="string">"src\\rock_paper_scissors\\背景.jpg"</span>); </span><br><span class="line">	Image img = icon.getImage();  </span><br><span class="line">	g.drawImage(img, <span class="number">0</span>, <span class="number">0</span>, icon.getIconWidth(), icon.getIconHeight(), 	icon.getImageObserver());  </span><br><span class="line">&#125;&#125;;</span><br></pre></td></tr></table></figure>
+# 一
+
+​    &emsp;&emsp;考试结束后,闲的无聊,不想打游戏,于是开始写代码.写了个剪刀石头布的小游戏.虽然没做到我想要的结果,但还不错.
+
+​    &emsp;&emsp;在这个小游戏制作过程中,我复习了上次Java实践的一些知识点,不知道东西就百度和问群友.这就是所谓的<font color="pink">面向百度编程</font>.有空我会上传到我的[Github](https://github.com/pengxiandyou)或者[码云](https://gitee.com/pengxiandyou)上
+
+​    &emsp;&emsp;在这之前我还为我的红警写了一个简单的文件删除工具.
+
+​    知识点
+
+  1. 重写`JPanel`使之可以带背景图片,再次改写使之可以为后面切换背景做铺垫
+
+     <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span>  </span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">paintComponent</span><span class="params">(Graphics g)</span> </span>&#123;  </span><br><span class="line">	 ImageIcon icon = <span class="keyword">new</span> ImageIcon(<span class="string">"src\\rock_paper_scissors\\背景.jpg"</span>); </span><br><span class="line">	Image img = icon.getImage();  </span><br><span class="line">	g.drawImage(img, <span class="number">0</span>, <span class="number">0</span>, icon.getIconWidth(), icon.getIconHeight(), 	icon.getImageObserver());  </span><br><span class="line">&#125;&#125;;</span><br></pre></td></tr></table></figure>
 
 
-</li>
-</ol>
-<ol start="2">
-<li><p>了解了一点画布概念</p>
-</li>
-<li><p>获取当前时间<code>System.currentTimeMillis()</code></p>
-</li>
-<li><p>每隔多少时间执行一次</p>
-  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Timer timer=<span class="keyword">new</span> Timer(<span class="keyword">false</span>);</span><br><span class="line">timer.schedule(<span class="keyword">new</span> TimerTask() &#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">代码;</span><br><span class="line">&#125;</span><br><span class="line">&#125;, <span class="number">0</span>, <span class="number">2000</span>);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>JFrame</code>设置大小时要注意包含边框</p>
-  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(<span class="string">"窗口边框上"</span>+jf.getInsets().top);<span class="comment">//上</span></span><br><span class="line">System.out.println(<span class="string">"窗口边框下"</span>+jf.getInsets().bottom);<span class="comment">//下</span></span><br><span class="line">System.out.println(<span class="string">"窗口边框左"</span>+jf.getInsets().left);<span class="comment">//左</span></span><br><span class="line">System.out.println(<span class="string">"窗口边框右"</span>+jf.getInsets().right);<span class="comment">//右</span></span><br><span class="line"></span><br><span class="line">System.out.println(<span class="string">"内容面板宽度"</span>+jf.getContentPane().getSize().width);<span class="comment">//宽 jf.getContentPane()好像可以不加</span></span><br><span class="line">System.out.println(<span class="string">"内容面板的高度"</span>+jf.getContentPane().getSize().height);<span class="comment">//高</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>浏览器打开指定链接</p>
-  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Desktop desktop = Desktop.getDesktop(); </span><br><span class="line">desktop.browse(<span class="keyword">new</span> URI(<span class="string">"https://space.bilibili.com/20837528"</span>));</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>文件选择器</p>
-  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">JFrame frame = <span class="keyword">new</span> JFrame();</span><br><span class="line"><span class="comment">// 创建一个默认打开用户文件夹的问价选择器</span></span><br><span class="line">JFileChooser chooser = <span class="keyword">new</span> JFileChooser();</span><br><span class="line"><span class="keyword">int</span> flag = chooser.showOpenDialog(frame);</span><br><span class="line"></span><br><span class="line"><span class="comment">//若选择了文件，则打印选择了什么文件</span></span><br><span class="line"><span class="keyword">if</span> (flag == JFileChooser.APPROVE_OPTION) &#123;</span><br><span class="line">	System.out.println(<span class="string">"用户选择了文件："</span> + chooser.getSelectedFile());</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>对于路径这些,打包要注意.<code>jar</code>包里读文件没学会实在太难了</p>
-</li>
-<li><p>通过<code>File</code>获取当前路径</p>
-  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">File directory = <span class="keyword">new</span> File(<span class="string">"."</span>);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    System.out.println(directory.getCanonicalPath()); </span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>一些监听器,一些小知识点</p>
-</li>
-<li><p>这个真不能保证对,主要我没学透,而且有好多不同的图.个人感觉这张是比较对的</p>
-<p>  <img src="https://i.loli.net/2019/08/21/eFmJnQzKLHZfh8N.png" alt="JFream.png"></p>
-</li>
-</ol>
-<h1 id="二"><a href="#二" class="headerlink" title="二"></a>二</h1><p>​    &emsp;&emsp;假期中还学了一些其他的.<code>JFrame</code>和<code>JPanel</code>的进一步了解.学习了Git和Github,并注册了Github账号,而且在Github上搭建静态博客.学习了MarkDown语法.学习了Java的一些小知识点(好像没记住).进一步学习了集合和IO流.简单学习了数据库.进一步学习JDBC.模仿使用了Test.使用了c3p0.使用了beanutils.使用了dbutils.进一步学习了MySQL.进一步学习了HTML.学习lCSS.学习JavaScript.进一步学习了JavaWeb.进一步学习了socket编程.简单了解了设计模式.了解JAVA新特性,即拉姆达表达式和函数式接口.学习了计算机二级的MS Office.学习了idea和eclipse的一些快捷键.</p>
-<p>​    &emsp;&emsp;有空我会把<a href="https://pengxiandyou.github.io/2019/08/22/MySQL简单笔记一/">MySQL的笔记</a>,HTML的笔记,CSS的笔记,JavaScript的笔记写成博客</p>
+2. 了解了一点画布概念
+
+3. 获取当前时间`System.currentTimeMillis()`
+
+4. 每隔多少时间执行一次
+
+     <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Timer timer=<span class="keyword">new</span> Timer(<span class="keyword">false</span>);</span><br><span class="line">timer.schedule(<span class="keyword">new</span> TimerTask() &#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">代码;</span><br><span class="line">&#125;</span><br><span class="line">&#125;, <span class="number">0</span>, <span class="number">2000</span>);</span><br></pre></td></tr></table></figure>
+
+5. `JFrame`设置大小时要注意包含边框
+
+     <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(<span class="string">"窗口边框上"</span>+jf.getInsets().top);<span class="comment">//上</span></span><br><span class="line">System.out.println(<span class="string">"窗口边框下"</span>+jf.getInsets().bottom);<span class="comment">//下</span></span><br><span class="line">System.out.println(<span class="string">"窗口边框左"</span>+jf.getInsets().left);<span class="comment">//左</span></span><br><span class="line">System.out.println(<span class="string">"窗口边框右"</span>+jf.getInsets().right);<span class="comment">//右</span></span><br><span class="line"></span><br><span class="line">System.out.println(<span class="string">"内容面板宽度"</span>+jf.getContentPane().getSize().width);<span class="comment">//宽 jf.getContentPane()好像可以不加</span></span><br><span class="line">System.out.println(<span class="string">"内容面板的高度"</span>+jf.getContentPane().getSize().height);<span class="comment">//高</span></span><br></pre></td></tr></table></figure>
+
+6. 浏览器打开指定链接
+
+     <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Desktop desktop = Desktop.getDesktop(); </span><br><span class="line">desktop.browse(<span class="keyword">new</span> URI(<span class="string">"https://space.bilibili.com/20837528"</span>));</span><br></pre></td></tr></table></figure>
+
+7. 文件选择器
+
+     <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">JFrame frame = <span class="keyword">new</span> JFrame();</span><br><span class="line"><span class="comment">// 创建一个默认打开用户文件夹的问价选择器</span></span><br><span class="line">JFileChooser chooser = <span class="keyword">new</span> JFileChooser();</span><br><span class="line"><span class="keyword">int</span> flag = chooser.showOpenDialog(frame);</span><br><span class="line"></span><br><span class="line"><span class="comment">//若选择了文件，则打印选择了什么文件</span></span><br><span class="line"><span class="keyword">if</span> (flag == JFileChooser.APPROVE_OPTION) &#123;</span><br><span class="line">	System.out.println(<span class="string">"用户选择了文件："</span> + chooser.getSelectedFile());</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+8. 对于路径这些,打包要注意.`jar`包里读文件没学会实在太难了
+
+9. 通过`File`获取当前路径
+
+     <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">File directory = <span class="keyword">new</span> File(<span class="string">"."</span>);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    System.out.println(directory.getCanonicalPath()); </span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+10. 一些监听器,一些小知识点
+
+11. 这个真不能保证对,主要我没学透,而且有好多不同的图.个人感觉这张是比较对的
+
+      ![JFream.png](https://i.loli.net/2019/08/21/eFmJnQzKLHZfh8N.png)
+
+# 二
+
+​    &emsp;&emsp;假期中还学了一些其他的.`JFrame`和`JPanel`的进一步了解.学习了Git和Github,并注册了Github账号,而且在Github上搭建静态博客.学习了MarkDown语法.学习了Java的一些小知识点(好像没记住).进一步学习了集合和IO流.简单学习了数据库.进一步学习JDBC.模仿使用了Test.使用了c3p0.使用了beanutils.使用了dbutils.进一步学习了MySQL.进一步学习了HTML.学习lCSS.学习JavaScript.进一步学习了JavaWeb.进一步学习了socket编程.简单了解了设计模式.了解JAVA新特性,即拉姆达表达式和函数式接口.学习了计算机二级的MS Office.学习了idea和eclipse的一些快捷键.
+
+​    &emsp;&emsp;有空我会把[MySQL的笔记](https://pengxiandyou.github.io/2019/08/22/MySQL简单笔记一/),HTML的笔记,CSS的笔记,JavaScript的笔记写成博客
+
+
+
 <center> <font color="pink">最后祝您生活愉快</font> </center>
 
       
@@ -722,17 +734,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <div class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -750,7 +753,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -771,7 +774,11 @@
         
           
         
-        <span class="site-state-item-count">2</span>
+          
+        
+          
+        
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -796,7 +803,9 @@
         
           
         
-        <span class="site-state-item-count">4</span>
+          
+        
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -884,23 +893,6 @@
       </div>
 
       
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一"><span class="nav-number">1.</span> <span class="nav-text">一</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二"><span class="nav-number">2.</span> <span class="nav-text">二</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
 
       
 
@@ -927,7 +919,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">10k</span>
+    <span title="站点总字数">11k</span>
   
 
   
@@ -936,7 +928,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">9 分钟</span>
+    <span title="站点阅读时长">10 分钟</span>
   
 </div>
 
@@ -1149,6 +1141,13 @@ setInterval("createtime()",250);
   
 
   
+  
+
+  
+  
+
+  
+
 
   
 
