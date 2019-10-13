@@ -99,7 +99,20 @@
     }
   };
 </script>
-
+<script>
+    (function () {
+        if ('') {
+            if (prompt('请输入文章密码') !== '') {
+                alert('密码错误！');
+                if (history.length === 1) {
+                    location.replace("https://pengxiandyou.github.io"); 
+                } else {
+                    history.back();
+                }
+            }
+        }
+    })();
+</script>
   <meta name="description" content="HTMl也好玩,后面的跟好玩.也可以到w3c学习">
 <meta name="keywords" content="HTML">
 <meta property="og:type" content="article">
