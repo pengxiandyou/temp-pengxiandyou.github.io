@@ -102,8 +102,18 @@
 <script>
     (function () {
         if ('') {
-            if (prompt('请输入文章密码') !== '') {
-                alert('密码错误！');
+        	var a=''.split(/[,，]/);
+        	var b=prompt('请输入文章口令');
+        	alert(a.length);
+        	for ( i=0;i<a.length;i++) {
+					alert(a[i]);
+					if (b==a[i]) {
+						flag=true;
+					}
+				}
+				alert(flag);
+            if (!flag) {
+                alert('口令错误！');
                 if (history.length === 1) {
                     location.replace("https://pengxiandyou.github.io"); 
                 } else {
@@ -533,7 +543,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
