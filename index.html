@@ -103,17 +103,16 @@
     (function () {
         if ('') {
         	var a=''.split(/[,，]/);
-        	var b=prompt('请输入文章口令');
-        	alert(a.length);
+        	var b=prompt('请输入可能的文章口令');
+        	var flag=new Boolean();
         	for ( i=0;i<a.length;i++) {
-					alert(a[i]);
 					if (b==a[i]) {
 						flag=true;
 					}
 				}
 				alert(flag);
-            if (!flag) {
-                alert('口令错误！');
+            if (false==flag) {
+                alert('本文章没有使用或没有该口令！可在第一篇文章下的评论留下关于我的口令');
                 if (history.length === 1) {
                     location.replace("https://pengxiandyou.github.io"); 
                 } else {
@@ -416,7 +415,7 @@
                 
               
 
-              <time title="创建时间：2019-10-15 12:15:41 / 修改时间：12:16:19" itemprop="dateCreated datePublished" datetime="2019-10-15T12:15:41+08:00">2019-10-15</time>
+              <time title="创建时间：2019-10-15 12:15:41 / 修改时间：12:22:44" itemprop="dateCreated datePublished" datetime="2019-10-15T12:15:41+08:00">2019-10-15</time>
             </span>
           
 

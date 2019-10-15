@@ -103,17 +103,16 @@
     (function () {
         if ('') {
         	var a=''.split(/[,，]/);
-        	var b=prompt('请输入文章口令');
-        	alert(a.length);
+        	var b=prompt('请输入可能的文章口令');
+        	var flag=new Boolean();
         	for ( i=0;i<a.length;i++) {
-					alert(a[i]);
 					if (b==a[i]) {
 						flag=true;
 					}
 				}
 				alert(flag);
-            if (!flag) {
-                alert('口令错误！');
+            if (false==flag) {
+                alert('本文章没有使用或没有该口令！可在第一篇文章下的评论留下关于我的口令');
                 if (history.length === 1) {
                     location.replace("https://pengxiandyou.github.io"); 
                 } else {
@@ -129,7 +128,7 @@
 <meta property="og:url" content="https://pengxiandyou.github.io/2019/10/15/口令测试/index.html">
 <meta property="og:site_name" content="魔装少男的博客">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-15T04:16:19.431Z">
+<meta property="og:updated_time" content="2019-10-15T04:22:44.705Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="口令测试">
 
@@ -411,7 +410,7 @@
                 
               
 
-              <time title="创建时间：2019-10-15 12:15:41 / 修改时间：12:16:19" itemprop="dateCreated datePublished" datetime="2019-10-15T12:15:41+08:00">2019-10-15</time>
+              <time title="创建时间：2019-10-15 12:15:41 / 修改时间：12:22:44" itemprop="dateCreated datePublished" datetime="2019-10-15T12:15:41+08:00">2019-10-15</time>
             </span>
           
 
@@ -538,7 +537,7 @@
   <p><span>本文标题:</span><a href="/2019/10/15/口令测试/">口令测试</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 小可爱 的个人博客">小可爱</a></p>
   <p><span>发布时间:</span>2019年10月15日 - 12:15</p>
-  <p><span>最后更新:</span>2019年10月15日 - 12:16</p>
+  <p><span>最后更新:</span>2019年10月15日 - 12:22</p>
   <p><span>原始链接:</span><a href="/2019/10/15/口令测试/" title="口令测试">https://pengxiandyou.github.io/2019/10/15/口令测试/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://pengxiandyou.github.io/2019/10/15/口令测试/" aria-label="复制成功！"></i></span>
   </p>
