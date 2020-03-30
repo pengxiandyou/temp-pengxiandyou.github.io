@@ -1792,6 +1792,10 @@ pre .javascript .function {
   border-bottom: none;
   border-bottom: 1px solid #fc6423;
 }
+.post-body a {
+  color: #428bca;
+  font-weight: bold;
+}
 .my_post_copyright {
   width: 85%;
   max-width: 45em;
@@ -1942,7 +1946,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff04ff;
+  background: #24baff;
 }
 .feed-link,
 .chat {

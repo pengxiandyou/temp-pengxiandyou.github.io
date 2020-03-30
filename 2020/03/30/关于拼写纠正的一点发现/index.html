@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-material.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.ico?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.ico?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    copycode: {"enable":true,"show_result":true,"style":"default"},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+<script>
+    (function () {
+        if ("") {
+        	var c="".split(/[,，]/);
+        	var a="".split(/[ ]/);
+        	var b=prompt('请输入可能的文章口令');
+        	var flag=new Boolean();
+        	for ( i=0;i<a.length;i++) {
+					if (b==a[i]) {
+						flag=true;
+					}
+				}
+				//alert(flag);
+            if (false==flag) {
+                alert('本文章没有使用或没有该口令！可在第一篇文章下的评论留下关于我的口令');
+                if (history.length === 1) {
+                    location.replace("https://pengxiandyou.github.io"); 
+                } else {
+                    history.back();
+                }
+            }
+        }
+    })();
+</script>
+<script>
+    (function () {
+        if ('') {
+            if (prompt('请输入文章密码') !== '') {
+                alert('密码错误！');
+                if (history.length === 1) {
+                    location.replace("https://pengxiandyou.github.io");
+                } else {
+                    history.back();
+                }
+            }
+        }
+    })();
+</script>
+  <meta name="description" content="在2020-3-26，我学习了拼写纠正的python版本。课后，在仔细研究时，发现了一点问题。">
+<meta name="keywords" content="算法分析与设计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于拼写纠正的一点发现">
+<meta property="og:url" content="https://pengxiandyou.github.io/2020/03/30/关于拼写纠正的一点发现/index.html">
+<meta property="og:site_name" content="魔装少男的博客">
+<meta property="og:description" content="在2020-3-26，我学习了拼写纠正的python版本。课后，在仔细研究时，发现了一点问题。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2020/03/30/B4YcnNIFeO1JDlQ.png">
+<meta property="og:image" content="https://i.loli.net/2020/03/30/ND1WmEITfQxh42H.png">
+<meta property="og:image" content="https://i.loli.net/2020/03/30/zDiC89jUcmxykAb.png">
+<meta property="og:image" content="https://i.loli.net/2020/03/30/6xwmvfqk4UbozTM.png">
+<meta property="og:updated_time" content="2020-03-30T12:59:56.970Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于拼写纠正的一点发现">
+<meta name="twitter:description" content="在2020-3-26，我学习了拼写纠正的python版本。课后，在仔细研究时，发现了一点问题。">
+<meta name="twitter:image" content="https://i.loli.net/2020/03/30/B4YcnNIFeO1JDlQ.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="https://pengxiandyou.github.io/2020/03/30/关于拼写纠正的一点发现/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  
+  <title>关于拼写纠正的一点发现 | 魔装少男的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">魔装少男的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">我可爱又美丽却能唤来死亡 <br>  虽然我可爱又迷人,但我能招来死亡</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <a href="https://github.com/pengxiandyou" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://pengxiandyou.github.io/2020/03/30/关于拼写纠正的一点发现/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小可爱">
+      <meta itemprop="description" content="正在读大学">
+      <meta itemprop="image" content="/images/头像.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔装少男的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">关于拼写纠正的一点发现
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-03-30 16:46:46 / 修改时间：20:59:56" itemprop="dateCreated datePublished" datetime="2020-03-30T16:46:46+08:00">2020-03-30</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/作业/" itemprop="url" rel="index"><span itemprop="name">作业</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/作业/算法分析与设计/" itemprop="url" rel="index"><span itemprop="name">算法分析与设计</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2020/03/30/关于拼写纠正的一点发现/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/30/关于拼写纠正的一点发现/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+                 阅读次数： 
+                <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+              </span>
+            </span>
+          
+
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">6.2k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">6 分钟</span>
+            </span>
+          
+
+          
+            <div class="post-description">在2020-3-26，我学习了拼写纠正的python版本。课后，在仔细研究时，发现了一点问题。</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="发现"><a href="#发现" class="headerlink" title="发现"></a>发现</h1><p>​    在对着课件仔细更改一点小错误后，测试了几遍，效果不错。当我进行效果统计时，通过下面代码，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /usr/bin/env python  </span></span><br><span class="line"><span class="comment">#! -*- coding:utf-8 -*-  </span></span><br><span class="line"><span class="comment">#====#====#====#====  </span></span><br><span class="line"><span class="comment">#!@Author : px</span></span><br><span class="line"><span class="comment">#!@time   : 2020/3/28 22:04</span></span><br><span class="line"><span class="comment">#!@File   : test比较</span></span><br><span class="line"><span class="comment">#====#====#====#====  </span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_file</span><span class="params">(filename)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        fp=open(filename)</span><br><span class="line">        text=fp.read()</span><br><span class="line">    <span class="keyword">except</span> IOError:</span><br><span class="line">        print(filename,<span class="string">"文件打开失败"</span>)</span><br><span class="line">        sys.exit()</span><br><span class="line">    <span class="comment">#print(text)</span></span><br><span class="line">    <span class="keyword">return</span> text</span><br><span class="line">A = re.findall(<span class="string">r'\w+'</span>, read_file(<span class="string">'batch0.tab.txt'</span>).lower())</span><br><span class="line"><span class="comment">#print(A)</span></span><br><span class="line">print(len(A))</span><br><span class="line">print(len([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]))</span><br><span class="line">print(<span class="number">4206</span>*<span class="number">2</span>)</span><br><span class="line">j=<span class="number">1</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> A:</span><br><span class="line">    print(i,j)</span><br><span class="line">    j+=<span class="number">1</span></span><br><span class="line">print(len(A))</span><br></pre></td></tr></table></figure>
+<p>​    我用的<a href="https://gitee.com/pengxiandyou/pengxiandyou/raw/master/src/resources/textfile/txt/batch0.tab.txt" target="_blank" rel="noopener">测试文件</a>是两个竖排的单词组，理论上应该是偶数才对，而且通过在线字数统计得出结果也可推断出问题了。</p>
+<p><img src="https://i.loli.net/2020/03/30/B4YcnNIFeO1JDlQ.png" alt="情况1明偶却奇.PNG"></p>
+<p>​    通过对相似单词检查奇偶性，发现<img src="https://i.loli.net/2020/03/30/ND1WmEITfQxh42H.png" alt="情况1问题位置.PNG">。</p>
+<p>​    对比<a href="https://gitee.com/pengxiandyou/pengxiandyou/raw/master/src/resources/textfile/txt/batch0.tab.txt" target="_blank" rel="noopener">原文</a>，发现<img src="https://i.loli.net/2020/03/30/zDiC89jUcmxykAb.png" alt="情况1问题出处.PNG">。</p>
+<p>​    </p>
+<p>这说明对于含有 <font color="red" size="5">‘</font> 的单词，代码并没有识别成一个。通过<code>\w’\w</code>对<a href="https://gitee.com/pengxiandyou/pengxiandyou/raw/master/src/resources/textfile/txt/big.txt" target="_blank" rel="noopener">语料库</a>和<a href="https://gitee.com/pengxiandyou/pengxiandyou/raw/master/src/resources/textfile/txt/batch0.tab.txt" target="_blank" rel="noopener">测试文件</a>的查找，也发现文本里有许多这种单词。对<code>A</code>（代码里的A）使用<code>\w&#39;\w</code>，也可说明代码没有把这种单词识别为一个单词。通过<code>A = re.findall(r&#39;\w+&#39;, read_file(&#39;batch0.tab.txt&#39;).lower())</code>更说明没有把这种单词识别为一个单词。</p>
+<h1 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h1><p>​    方案一： 使用<code>A = re.findall(r&#39;\w+\&#39;?\w+&#39;, read_file(&#39;batch0.tab.txt&#39;).lower())</code></p>
+<p><img src="https://i.loli.net/2020/03/30/6xwmvfqk4UbozTM.png" alt="情况1问题解决.PNG"></p>
+<h1 id="新问题"><a href="#新问题" class="headerlink" title="新问题"></a>新问题</h1><p>​    由于更改了规则，语言模型里有类似<code>can&#39;t</code>的单词，所以在字母替换时要注意<code>&#39;</code>，所以将<code>alphabeta=&#39;qwertyuiopasdfghjklzxcvbnm&#39;</code>更改为<code>alphabeta=&#39;qwertyuiopasdfghjklzxcvbnm\&#39;</code></p>
+<h1 id="统计方式"><a href="#统计方式" class="headerlink" title="统计方式"></a>统计方式</h1><ol>
+<li><a href="https://gitee.com/pengxiandyou/pengxiandyou/raw/master/src/resources/textfile/txt/batch0.tab.txt" target="_blank" rel="noopener">文本</a>里有两列，一列错误，一列期望结果。 （我觉得慢）</li>
+<li><a href="http://norvig.com/spell-testset1.txt" target="_blank" rel="noopener">文本</a>好几行，一行第一个错误，其余期望结果。（我还可以接受）</li>
+<li>使用<a href="http://norvig.com/spell-correct.html" target="_blank" rel="noopener">原作者</a>的方式，把原作者的的部分代码放入我的代码里修修补补。 （我还可以接受）</li>
+</ol>
+<h1 id="又发现新问题"><a href="#又发现新问题" class="headerlink" title="又发现新问题"></a>又发现新问题</h1><p>有的单词通过<code>-</code>连接成一个单词，可以通过<code>A = re.findall(r&#39;\w+-?\w+&#39;, read_file(&#39;batch0.tab.txt&#39;).lower())</code>。</p>
+<p>其实对于<code>-</code>，<code>&#39;</code>应可以不考虑，因为这样的单词比较少。当然也可以改进，用<code>A = re.findall(r&#39;\w+\&#39;?-?\w+&#39;, read_file(&#39;batch0.tab.txt&#39;).lower())</code>.</p>
+<p>或许还有其他类型的单词，但道理差不多。</p>
+<h1 id="新知识"><a href="#新知识" class="headerlink" title="新知识"></a>新知识</h1><ol>
+<li>python lambda：<a href="https://www.baidu.com/s?wd=python+lambda" target="_blank" rel="noopener">①</a>  <a href="https://www.runoob.com/python/python-functions.html" target="_blank" rel="noopener">②</a>  <a href="https://blog.csdn.net/Torres_10/article/details/87919964" target="_blank" rel="noopener">③</a></li>
+<li>python from import <a href="https://www.baidu.com/s?wd=python+from+import" target="_blank" rel="noopener">①</a>  <a href="https://blog.csdn.net/qq_30815237/article/details/93203934" target="_blank" rel="noopener">②</a> </li>
+<li>python if for <a href="https://www.baidu.com/s?&amp;wd=python+if+for" target="_blank" rel="noopener">①</a>  <a href="https://blog.csdn.net/qq_21997625/article/details/85695876" target="_blank" rel="noopener">②</a>  <a href="https://www.cnblogs.com/huchong/p/9328687.html" target="_blank" rel="noopener">③</a></li>
+<li>python set <a href="https://www.baidu.com/s?&amp;wd=python+set" target="_blank" rel="noopener">①</a>  <a href="http://c.biancheng.net/view/4402.html" target="_blank" rel="noopener">②</a>  <a href="https://www.cnblogs.com/cyx-12/p/9234285.html" target="_blank" rel="noopener">③</a></li>
+</ol>
+<h1 id="一些感悟"><a href="#一些感悟" class="headerlink" title="一些感悟"></a>一些感悟</h1><ol>
+<li>python 突然感觉挺有趣，挺好玩的。</li>
+<li>这一次知识点感觉好多，好累啊。</li>
+<li>如果以后做报表这类的或许会打算用python自动化。</li>
+</ol>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p>虽然我的博客没人看，但后期大概率会通过一些手段（由于是静态页面，所以这个手段拦不住一些有心人，当然我也愿意给他看）把一些地方（比如代码）隐藏掉，时间过了再显示。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /usr/bin/env python  </span></span><br><span class="line"><span class="comment">#! -*- coding:utf-8 -*-  </span></span><br><span class="line"><span class="comment">#====#====#====#====  </span></span><br><span class="line"><span class="comment">#!@Author : px</span></span><br><span class="line"><span class="comment">#!@time   : 2020/3/26 16:08</span></span><br><span class="line"><span class="comment">#!@File   : 3-26-1</span></span><br><span class="line"><span class="comment">#====#====#====#===</span></span><br><span class="line"><span class="comment">#拼写纠正</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_file</span><span class="params">(filename)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        fp=open(filename)</span><br><span class="line">        text=fp.read()</span><br><span class="line">    <span class="keyword">except</span> IOError:</span><br><span class="line">        print(filename,<span class="string">"文件打开失败"</span>)</span><br><span class="line">        sys.exit()</span><br><span class="line">    <span class="comment">#print(text)</span></span><br><span class="line">    <span class="keyword">return</span> text</span><br><span class="line"><span class="comment">#分词</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">words</span><span class="params">(text)</span>:</span></span><br><span class="line">    <span class="comment">#1</span></span><br><span class="line">    <span class="comment">#A=re.findall('[a-z]+',text.lower())</span></span><br><span class="line">    <span class="comment">#2</span></span><br><span class="line">    A = re.findall(<span class="string">r'\w+\'?\w+'</span>, text.lower())</span><br><span class="line">    <span class="comment">#print(A)</span></span><br><span class="line">    <span class="keyword">return</span> A</span><br><span class="line"><span class="comment">#统计词频 语言模型训练</span></span><br><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train</span><span class="params">(features)</span>:</span></span><br><span class="line">    <span class="comment">#初始化模型 得到默认字典 value=1</span></span><br><span class="line">    model=collections.defaultdict(<span class="keyword">lambda</span> :<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">for</span> f <span class="keyword">in</span> features:</span><br><span class="line">        model[f]= model[f]+<span class="number">1</span></span><br><span class="line">    <span class="comment">#print("model: ",model)</span></span><br><span class="line">    <span class="keyword">return</span> model</span><br><span class="line">A=words(read_file(<span class="string">"big.txt"</span>))</span><br><span class="line"><span class="comment">###############################</span></span><br><span class="line"><span class="comment">#添加的</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line">WORDS=Counter(A)</span><br><span class="line"><span class="comment">#############################</span></span><br><span class="line">NWORDS=train(A)</span><br><span class="line"><span class="comment">#print(len(A))</span></span><br><span class="line">P=sum(NWORDS.values())</span><br><span class="line"><span class="comment">#print(NWORDS["the"],NWORDS["they"],NWORDS["that"])</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#判读单词是否在字典，错误则纠正</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">known</span><span class="params">(words)</span>:</span><span class="comment">#不在则返回空</span></span><br><span class="line">    <span class="keyword">return</span> (set(w <span class="keyword">for</span> w <span class="keyword">in</span> words <span class="keyword">if</span> w <span class="keyword">in</span> NWORDS))</span><br><span class="line"></span><br><span class="line">alphabeta=<span class="string">'qwertyuiopasdfghjklzxcvbnm\''</span></span><br><span class="line"><span class="comment">#编辑距离为的可能单词</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">edist1</span><span class="params">(word)</span>:</span></span><br><span class="line">    n=len(word)</span><br><span class="line">    s1=[word[<span class="number">0</span>:i]+word[i+<span class="number">1</span>:] <span class="keyword">for</span> i <span class="keyword">in</span> range(n)]</span><br><span class="line">    <span class="comment">#print(s1)#删除单词中的字母</span></span><br><span class="line">    s2=[word[<span class="number">0</span>:i]+word[i]+word[i+<span class="number">2</span>:] <span class="keyword">for</span> i <span class="keyword">in</span> range(n<span class="number">-1</span>)]</span><br><span class="line">    <span class="comment">#print(s2)# 单词字母错位</span></span><br><span class="line">    s3=[word[<span class="number">0</span>:i]+c+word[i+<span class="number">1</span>:] <span class="keyword">for</span> i <span class="keyword">in</span> range(n) <span class="keyword">for</span> c <span class="keyword">in</span> alphabeta]</span><br><span class="line">    <span class="comment">#print(s3,len(s3))#字母替换</span></span><br><span class="line">    s4=[word[<span class="number">0</span>:i]+c+word[i:] <span class="keyword">for</span> i <span class="keyword">in</span> range(n) <span class="keyword">for</span> c <span class="keyword">in</span> alphabeta]</span><br><span class="line">    <span class="comment">#print(s4,len(s4))#字母插入</span></span><br><span class="line">    <span class="keyword">return</span> (set(s1+s2+s3+s4))</span><br><span class="line"><span class="comment">#编辑距离为2，递归</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">edist2</span><span class="params">(word)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> (set(e2 <span class="keyword">for</span> e1 <span class="keyword">in</span> edist1(word) <span class="keyword">for</span> e2 <span class="keyword">in</span> edist1(e1)))</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">known_edist2</span><span class="params">(word)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> (set(e2 <span class="keyword">for</span> e1 <span class="keyword">in</span> edist1(word) <span class="keyword">for</span> e2 <span class="keyword">in</span> edist1(e1) <span class="keyword">if</span> e2 <span class="keyword">in</span> NWORDS))</span><br><span class="line"><span class="comment">#选择最大可能的单词</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">correct</span><span class="params">(word)</span>:</span></span><br><span class="line">    <span class="comment">#短路运算 candidates 列表</span></span><br><span class="line">    candidates=known([word]) <span class="keyword">or</span> known(edist1(word)) <span class="keyword">or</span> known(edist2(word)) <span class="keyword">or</span> [word]</span><br><span class="line">    <span class="keyword">return</span> max(candidates,key=<span class="keyword">lambda</span> w:NWORDS[w])</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">count</span><span class="params">()</span>:</span></span><br><span class="line">    batch0=read_file(<span class="string">'batch0.tab.txt'</span>)</span><br><span class="line">    batch0words=words(batch0)</span><br><span class="line">    print(len(batch0words),batch0words[<span class="number">0</span>],batch0words[<span class="number">1</span>])</span><br><span class="line">    con=<span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(batch0words)//<span class="number">2</span>):</span><br><span class="line">        <span class="keyword">if</span> (correct(batch0words[<span class="number">2</span>*i]) == batch0words[<span class="number">2</span>*i+<span class="number">1</span>]):</span><br><span class="line">            con+=<span class="number">1</span></span><br><span class="line">            <span class="comment">#print("con",con)</span></span><br><span class="line">        <span class="comment">#print("i",i)</span></span><br><span class="line">    print(con/(len(batch0words)*<span class="number">0.5</span>))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_file_lines</span><span class="params">(filename)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        fp=open(filename)</span><br><span class="line">        text=fp.readlines()</span><br><span class="line">    <span class="keyword">except</span> IOError:</span><br><span class="line">        print(filename,<span class="string">"文件打开失败"</span>)</span><br><span class="line">        sys.exit()</span><br><span class="line">    <span class="comment">#print(text)</span></span><br><span class="line">    <span class="keyword">return</span> text</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">count2</span><span class="params">()</span>:</span></span><br><span class="line">    con=<span class="number">0</span></span><br><span class="line">    words_line=read_file_lines(<span class="string">"3.txt"</span>)<span class="comment">#一排一排的记录</span></span><br><span class="line">    <span class="comment">#print(len(words_line),words_line[0],words_line[1])</span></span><br><span class="line">    <span class="keyword">for</span> linewords <span class="keyword">in</span> words_line:<span class="comment">#取一排</span></span><br><span class="line">        B=words(linewords)<span class="comment">#一排转换为单词列表</span></span><br><span class="line">        <span class="keyword">if</span> correct(B[<span class="number">0</span>]) <span class="keyword">in</span> B:</span><br><span class="line">            con+=<span class="number">1</span></span><br><span class="line">    print(con/len(words_line))</span><br><span class="line"></span><br><span class="line"><span class="comment">#############################</span></span><br><span class="line"><span class="comment">#添加的</span></span><br><span class="line"><span class="comment">#将unit_test删除了</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">spelltest</span><span class="params">(tests, verbose=False)</span>:</span></span><br><span class="line">    <span class="string">"Run correction(wrong) on all (right, wrong) pairs; report results."</span></span><br><span class="line">    <span class="keyword">import</span> time</span><br><span class="line">    start = time.perf_counter()</span><br><span class="line">    good, unknown = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    n = len(tests)</span><br><span class="line">    <span class="keyword">for</span> right, wrong <span class="keyword">in</span> tests:</span><br><span class="line">        w = correct(wrong)</span><br><span class="line">        good += (w == right)</span><br><span class="line">        <span class="keyword">if</span> w != right:</span><br><span class="line">            unknown += (right <span class="keyword">not</span> <span class="keyword">in</span> WORDS)</span><br><span class="line">            <span class="keyword">if</span> verbose:</span><br><span class="line">                print(<span class="string">'correction(&#123;&#125;) =&gt; &#123;&#125; (&#123;&#125;); expected &#123;&#125; (&#123;&#125;)'</span></span><br><span class="line">                      .format(wrong, w, WORDS[w], right, WORDS[right]))</span><br><span class="line">    dt = time.perf_counter() - start</span><br><span class="line">    print(<span class="string">'&#123;:.0%&#125; of &#123;&#125; correct (&#123;:.0%&#125; unknown) at &#123;:.0f&#125; words per second '</span></span><br><span class="line">          .format(good / n, n, unknown / n, n / dt))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Testset</span><span class="params">(lines)</span>:</span></span><br><span class="line">    <span class="string">"Parse 'right: wrong1 wrong2' lines into [('right', 'wrong1'), ('right', 'wrong2')] pairs."</span></span><br><span class="line">    <span class="keyword">return</span> [(right, wrong)</span><br><span class="line">            <span class="keyword">for</span> (right, wrongs) <span class="keyword">in</span> (line.split(<span class="string">':'</span>) <span class="keyword">for</span> line <span class="keyword">in</span> lines)</span><br><span class="line">            <span class="keyword">for</span> wrong <span class="keyword">in</span> wrongs.split()]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># print(unit_tests())</span></span><br><span class="line"><span class="comment"># spelltest(Testset(open('spell-testset1.txt')))  # Development set</span></span><br><span class="line"><span class="comment"># spelltest(Testset(open('spell-testset2.txt')))  # Final test set</span></span><br><span class="line"><span class="comment">############################</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>):</span><br><span class="line">        wrd=input(<span class="string">"输入单词"</span>)</span><br><span class="line">        print(<span class="string">"edist1: "</span>,known(edist1(wrd)))</span><br><span class="line">        print(<span class="string">"known_edist2: "</span>,known_edist2(wrd))</span><br><span class="line">        print(correct(wrd))</span><br><span class="line">        <span class="comment">#print()</span></span><br><span class="line">   <span class="comment"># print(unit_tests())#我删除了</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># spelltest(Testset(open('spell-testset1.txt')))  # Development set</span></span><br><span class="line">    <span class="comment"># spelltest(Testset(open('spell-testset2.txt')))</span></span><br><span class="line">    <span class="comment"># wrd = input("输入单词")</span></span><br><span class="line">    <span class="comment"># print("edist1: ",known(edist1(wrd)))</span></span><br><span class="line">    <span class="comment"># print("known_edist2: ",known_edist2(wrd))</span></span><br><span class="line">    <span class="comment"># print(correct(wrd))</span></span><br><span class="line">    <span class="comment"># #count()</span></span><br><span class="line">    <span class="comment"># count2()</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+      
+    
+
+    
+    
+    
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2020/03/30/关于拼写纠正的一点发现/">关于拼写纠正的一点发现</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 小可爱 的个人博客">小可爱</a></p>
+  <p><span>发布时间:</span>2020年03月30日 - 16:46</p>
+  <p><span>最后更新:</span>2020年03月30日 - 20:59</p>
+  <p><span>原始链接:</span><a href="/2020/03/30/关于拼写纠正的一点发现/" title="关于拼写纠正的一点发现">https://pengxiandyou.github.io/2020/03/30/关于拼写纠正的一点发现/</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://pengxiandyou.github.io/2020/03/30/关于拼写纠正的一点发现/" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+	});
+    });  
+</script>
+
+      
+</div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>打赏</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.png" alt="小可爱 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.png" alt="小可爱 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/算法分析与设计/" rel="tag"># 算法分析与设计</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/01/数据结构第六次上机代码/" rel="next" title="数据结构第六次上机代码">
+                <i class="fa fa-chevron-left"></i> 数据结构第六次上机代码
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  
+    <img class="site-author-image" itemprop="image" src="/images/头像.jpg" alt="小可爱">
+  
+  <p class="site-author-name" itemprop="name">小可爱</p>
+  <div class="site-description motion-element" itemprop="description">正在读大学</div>
+</div>
+
+
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+
+
+
+
+  <div class="links-of-author motion-element">
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/pengxiandyou" title="GitHub &rarr; https://github.com/pengxiandyou" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://www.coolapk.com/u/1385475" title="酷安 &rarr; https://www.coolapk.com/u/1385475" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>酷安</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://space.bilibili.com/20837528" title="B站 &rarr; https://space.bilibili.com/20837528" rel="noopener" target="_blank"><i class="fa fa-fw fa-tv"></i>B站</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://gitee.com/pengxiandyou" title="Gitee &rarr; https://gitee.com/pengxiandyou" rel="noopener" target="_blank"><i class="fa fa-fw fa-gitee"></i>Gitee</a>
+      </span>
+    
+  </div>
+
+
+
+
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://www.baidu.com" title="http://www.baidu.com" rel="noopener" target="_blank">百度</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://www.52pojie.cn/" title="https://www.52pojie.cn/" rel="noopener" target="_blank">吾爱</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://www.zhihu.com/" title="https://www.zhihu.com/" rel="noopener" target="_blank">知乎</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/" title="https://www.jianshu.com/" rel="noopener" target="_blank">简书</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://pengxiandyou.gitee.io" title="https://pengxiandyou.gitee.io" rel="noopener" target="_blank">码云io</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://pengxiandyou.gitee.io/src/game/t-rex-runner/" title="https://pengxiandyou.gitee.io/src/game/t-rex-runner/" rel="noopener" target="_blank">小恐龙游戏</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+          
+          
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#发现"><span class="nav-number">1.</span> <span class="nav-text">发现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#修改"><span class="nav-number">2.</span> <span class="nav-text">修改</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新问题"><span class="nav-number">3.</span> <span class="nav-text">新问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#统计方式"><span class="nav-number">4.</span> <span class="nav-text">统计方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#又发现新问题"><span class="nav-number">5.</span> <span class="nav-text">又发现新问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新知识"><span class="nav-number">6.</span> <span class="nav-text">新知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一些感悟"><span class="nav-number">7.</span> <span class="nav-text">一些感悟</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码"><span class="nav-number">8.</span> <span class="nav-text">代码</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小可爱</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">112k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">1:42</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>  
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("07/15/2019 13:14:21");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+<script src="https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: false,
+    appId: 'NV0UdyQgG4YmNrKza8PMBPfg-MdYXbMMI',
+    appKey: 'nlNzn8j5jFal7PfxtNld4Iwk',
+    placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!支持markdown呢',
+    avatar: 'monsterid',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+  <script type="text/javascript" src="/js/love.js"></script>
+
+
+
+
+
+<!-- 天气 -->
+<script type="text/javascript">
+WIDGET = {FID: 'apV00Hp0nY'}
+</script>
+<script type="text/javascript" src="https://apip.weatherdt.com/float/static/js/r.js?v=1111"></script>
+</body>
+</html>
